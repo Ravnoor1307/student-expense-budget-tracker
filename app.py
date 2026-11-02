@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
 
+from dashboard import Dashboard
+
+
 class ExpenseTrackerApp:
 
     def __init__(self):
@@ -27,11 +30,16 @@ class ExpenseTrackerApp:
                 )
                 return
 
-            messagebox.showwarning(
-                "Login unavailable",
-                "Authentication is not configured yet, so your credentials cannot be verified.",
-                parent=self.root,
-            )
+            self.clear()
+            try:
+                self.dashboard = Dashboard(self.root, username)
+            except ValueError as error:
+                messagebox.showerror(
+                    "Dashboard data error",
+                    str(error),
+                    parent=self.root,
+                )
+                self.loginGui()
 
         self.loginframe = Frame(self.root, bg='#f0f0f0')
         self.loginframe.pack(pady=50)
@@ -40,6 +48,14 @@ class ExpenseTrackerApp:
             self.loginframe, text='Login', bg='#f0f0f0', font=('Arial', 16)
         )
         self.login_label.pack(pady=10)
+
+        self.login_notice = Label(
+            self.loginframe,
+            text="Demo mode: credentials are not verified.",
+            bg='#f0f0f0',
+            fg='#666666',
+        )
+        self.login_notice.pack(pady=5)
 
         self.username_label = Label(self.loginframe, text='Username:', bg='#f0f0f0')
         self.username_label.pack(pady=5)
