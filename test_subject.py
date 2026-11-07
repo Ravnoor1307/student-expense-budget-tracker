@@ -3,6 +3,12 @@ from subject import Subject
 
 # Creating three independent Subject objects
 subject1 = Subject("Python Programming", "PY101", "Professor A", "CSE", 4)
+normalized_subject = Subject("  Python Programming  ", " PY101 ", " Professor A ", " CSE ", 3.5)
+assert normalized_subject.get_subject_name() == "Python Programming"
+assert normalized_subject.get_subject_code() == "PY101"
+assert normalized_subject.get_faculty() == "Professor A"
+assert normalized_subject.get_department() == "CSE"
+assert normalized_subject.get_credits() == 3.5
 
 subject2 = Subject("Data Structures", "DS102", "Professor B", "CSE", 3)
 
@@ -27,6 +33,14 @@ assert subject1.get_faculty() == "Professor X"
 assert subject1.set_subject_name("Python Programming") is True
 assert subject1.set_subject_code("PY101") is True
 assert subject1.set_department("CSE") is True
+assert subject1.set_subject_name("  Clean Name  ") is True
+assert subject1.get_subject_name() == "Clean Name"
+assert subject1.set_subject_code("  PY102  ") is True
+assert subject1.get_subject_code() == "PY102"
+assert subject1.set_department("  Computer Science  ") is True
+assert subject1.get_department() == "Computer Science"
+assert subject1.set_faculty("  Professor X  ") is True
+assert subject1.get_faculty() == "Professor X"
 assert subject1.set_subject_name("  ") is False
 assert subject1.set_subject_code("") is False
 assert subject1.set_department(None) is False
@@ -48,8 +62,15 @@ assert (
     subject1.get_department(),
     subject1.get_credits(),
 ) == original_subject1
-assert subject1.update_subject(new_name="Updated name", new_credits=6) is True
+assert subject1.update_subject(
+    new_name="  Updated name  ",
+    new_code="  PY101  ",
+    new_department="  CSE  ",
+    new_credits=6,
+) is True
 assert subject1.get_subject_name() == "Updated name"
+assert subject1.get_subject_code() == "PY101"
+assert subject1.get_department() == "CSE"
 assert subject1.get_credits() == 6
 assert subject1.update_subject() is False
 assert subject1.update_faculty("   ") is False

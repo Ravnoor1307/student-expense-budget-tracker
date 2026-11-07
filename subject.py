@@ -19,10 +19,10 @@ class Subject:
         if not self._is_valid_credits(credits):
             raise ValueError("Credits must be a positive number.")
 
-        self.__subject_name = name
-        self.__subject_code = code
-        self.__faculty = faculty
-        self.__department = department
+        self.__subject_name = name.strip()
+        self.__subject_code = code.strip()
+        self.__faculty = faculty.strip()
+        self.__department = department.strip()
         self.__credits = credits
 
     @staticmethod
@@ -45,25 +45,25 @@ class Subject:
     def set_subject_name(self, name):
         if not self._is_valid_text(name):
             return False
-        self.__subject_name = name
+        self.__subject_name = name.strip()
         return True
 
     def set_subject_code(self, code):
         if not self._is_valid_text(code):
             return False
-        self.__subject_code = code
+        self.__subject_code = code.strip()
         return True
 
     def set_faculty(self, faculty):
         if not self._is_valid_text(faculty):
             return False
-        self.__faculty = faculty
+        self.__faculty = faculty.strip()
         return True
 
     def set_department(self, department):
         if not self._is_valid_text(department):
             return False
-        self.__department = department
+        self.__department = department.strip()
         return True
 
     def set_credits(self, credits):
@@ -120,11 +120,11 @@ class Subject:
                 return False
 
         if new_name is not None:
-            self.__subject_name = new_name
+            self.__subject_name = new_name.strip()
         if new_code is not None:
-            self.__subject_code = new_code
+            self.__subject_code = new_code.strip()
         if new_department is not None:
-            self.__department = new_department
+            self.__department = new_department.strip()
         if new_credits is not None:
             self.__credits = new_credits
 
