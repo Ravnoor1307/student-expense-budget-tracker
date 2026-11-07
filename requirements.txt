@@ -1,2 +1,0 @@
-# This project currently uses only the Python standard library.
-# Tkinter is included with most Python installations and is not installed with pip.
